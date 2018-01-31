@@ -11,6 +11,7 @@ body {
 		// 选项类型
 		font-size: 14px;
 		display: inline-block;
+		border: none;
 		&.choice {
 			position: relative;
 			&:before {
@@ -96,7 +97,6 @@ body {
 			}
 		}
 		&.fail {
-			display: block;
 			background-image: url(../image/failed_bg.gif);
 			.fail-btn-wrap {
 				position: absolute;
@@ -106,7 +106,40 @@ body {
 			}
 		}
 		&.form {
+			display: block;
 			background-image: url(../image/reward_bg_two.png);
+			.form-title {
+				color: #fff;
+				font-size: 20px;
+				text-align: center;
+				margin-top: 56px;
+			}
+			form {
+				overflow: hidden;
+				margin-top: 48px;
+			}
+			.form-label {
+				text-align: center;
+				color: #fff;
+				margin-top: 28px;
+			}
+			.form-box {
+				text-align: center;
+				margin-top: 10px;
+				&.submit {
+					padding-bottom: 8px;
+					margin-top: 72px;
+				}
+			}
+			.form-input {
+				border-radius: 16px;
+				height: 26px;
+				outline: none;
+				width: 140px;
+				border: none;
+				padding: 0 12px;
+				text-align: center;
+			}
 		}
 		&.end {
 			background-image: url(../image/reward_bg_two.png);
