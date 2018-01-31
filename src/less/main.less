@@ -5,18 +5,17 @@
 body {
 	font-size: 14px;
 }
+
 /********************************按钮********************************/
 	.btn {
 		// 选项类型
 		font-size: 14px;
 		display: inline-block;
 		&.choice {
-			padding: 6px 18px 6px 34px;
 			position: relative;
 			&:before {
 				font-size: 14px;
 				position: absolute;
-				left: 18px;
 				top: 6px;
 			}
 			&.a {
@@ -34,36 +33,83 @@ body {
 					content: 'C.';
 				}
 			}
-			&.yellow {
-				background-color: #ffdd62;
-				border-radius: 14px;
-				box-shadow: 0 3px 0 0 #972d23;
-			}
-			&.purple {
-				background-color: #b76ee4;
-				&.a {
-					border-radius: 15px;
-					box-shadow: 0 3px 0 0 #7b4674;
-				}
-				&.b, &.c {
-					border-radius: 15px;
-					box-shadow: 0 3px 0 0 #7b4674;
-				}
+			.under-line {
+				border-bottom: 1px solid #3774a0;
 			}
 		}
-		// 下一题
-		&.next {
-			left: 50%;
+		// 开始、下一题等
+		&.fun {
 			color: #fff;
-			bottom: 53.5px;
-			padding: 8px 0;
-			position: fixed;
-			margin-left: -60px;
-			background-color: #b43124;
+			padding: 8px 36px;
+			background-color: #e13422;
 			box-shadow: 0 3px 0 0 #43145b;
 			text-align: center;
-			border-radius: 15px;
-			width: 120px;
+			border-radius: 18px;
+		}
+		// 失败
+		&.fail {
+			color: #fff;
+			padding: 8px 36px;
+			background-color: #3774a0;
+			box-shadow: 0 3px 0 0 #43145b;
+			text-align: center;
+			border-radius: 18px;
+		}
+	}
+
+/********************************开始、失败等节点页面********************************/
+	.page-wrap {
+		width: 100%;
+		height: 100%;
+		display: none;
+		position: absolute;
+		background-size: contain;
+		background-repeat: no-repeat;
+		&.start {
+			background-image: url(../image/start_bg.png);
+			.start-text {
+				color: #fff;
+				margin: 56px auto 0;
+				width: 232px;
+				line-height: 24px;
+				background-color: rgba(0, 0, 0, 0.5);
+				padding: 10px 4px 0 16px;
+				box-shadow: 0px 0 8px 8px rgba(0,0,0,.5);
+			}
+			.start-btn-wrap {
+				text-align: center;
+				margin-top: 16px;
+			}
+		}
+		&.success {
+			background-image: url(../image/pass_bg.png);
+			.success-text {
+				color: #fff;
+				width: 232px;
+				line-height: 24px;
+				margin: 32px auto 0;
+				text-align: center;
+			}
+			.success-btn-wrap {
+				text-align: center;
+				margin-top: 24px;
+			}
+		}
+		&.fail {
+			display: block;
+			background-image: url(../image/failed_bg.gif);
+			.fail-btn-wrap {
+				position: absolute;
+				width: 100%;
+				bottom: 46px;
+				text-align: center;
+			}
+		}
+		&.form {
+			background-image: url(../image/reward_bg_two.png);
+		}
+		&.end {
+			background-image: url(../image/reward_bg_two.png);
 		}
 	}
 
@@ -72,6 +118,7 @@ body {
 		width: 100%;
 		height: 100%;
 		position: absolute;
+		display: none;
 	}
 	.board-title {
 		&:before {
@@ -106,22 +153,34 @@ body {
 		background-size: contain;
 		background-repeat: no-repeat;
 	}
-	.board-box {
-		padding: 36px 40px 0;
-	}
 	.master-item {
 		height: 100%;
 		background-size: cover;
 		background-position: center;
 		background-repeat: no-repeat;
 		overflow: hidden;
+		display: none;
 		&.a {
 			background-image: url(../image/test_bg_one.png);
 			.board-wrap {
-				height: 314px;
 				width: 320px;
+				height: 314px;
 				margin: 0 auto;
 				background-image: url(../image/test_ques_bg_one.png);
+			}
+			.board-box {
+				padding: 36px 40px 0;
+			}
+			.btn {
+				&.choice {
+					padding: 6px 12px 6px 28px;
+					background-color: #ffdd62;
+					border-radius: 12px;
+					box-shadow: 0 3px 0 0 #972d23;
+					&:before {
+						left: 12px;
+					}
+				}
 			}
 			.board-title-bg {
 				background-image: url(../image/test_num_one.png);
@@ -129,37 +188,151 @@ body {
 		}
 		&.b {
 			background-image: url(../image/test_bg_two.png);
+			.board-wrap {
+				width: 340px;
+				height: 278px;
+				margin: 0 auto;
+				background-image: url(../image/test_ques_bg_two.png);
+			}
+			.board-box {
+				padding: 28px 32px 0;
+			}
+			.btn {
+				&.choice {
+					padding: 6px 8px 6px 24px;
+					background-color: #f5ebc7;
+					border-radius: 14px;
+					box-shadow: 0 4px 0 0 #a4442c;
+					&:before {
+						left: 8px;
+					}
+				}
+			}
 			.board-title-bg {
 				background-image: url(../image/test_num_two.png);
 			}
 		}
 		&.c {
 			background-image: url(../image/test_bg_three.png);
+			.board-wrap {
+				width: 372px;
+				height: 302px;
+				margin: 0 auto;
+				background-image: url(../image/test_ques_bg_three.png);
+			}
+			.board-box {
+				padding: 42px 38px 0;
+			}
+			.btn {
+				&.choice {
+					padding: 6px 8px 6px 24px;
+					background-color: #9ec8ee;
+					border-radius: 28px;
+					box-shadow: 0 3px 0 0 #8487a8;
+					&:before {
+						left: 8px;
+					}
+					&.a {
+						box-shadow: 0 5px 0 0 #8487a8;
+						padding: 6px 14px 6px 24px;
+					}
+				}
+			}
 			.board-title-bg {
 				background-image: url(../image/test_num_three.png);
 			}
 		}
 		&.d {
 			background-image: url(../image/test_bg_four.png);
+			.board-wrap {
+				left: 50%;
+				bottom: 0;
+				width: 372px;
+				height: 306px;
+				margin-left: -186px;
+				position: absolute;
+				background-image: url(../image/test_ques_bg_four.png);
+			}
+			.board-box {
+				padding: 54px 42px 0;
+			}
+			.btn {
+				&.choice {
+					width: 204px;
+					padding: 6px 6px 6px 26px;
+					background-color: #e1a67c;
+					border-radius: 16px;
+					box-shadow: 0 3px 0 0 #95a252;
+					&:before {
+						left: 10px;
+					}
+				}
+			}
 			.board-title-bg {
 				background-image: url(../image/test_num_four.png);
 			}
 		}
 		&.e {
 			background-image: url(../image/test_bg_five.png);
+			.board-wrap {
+				width: 372px;
+				height: 296px;
+				margin: 0 auto;
+				background-image: url(../image/test_ques_bg_five.png);
+			}
+			.board-box {
+				padding: 32px 32px 0;
+			}
+			.btn {
+				&.choice {
+					padding: 6px 12px 6px 30px;
+					background-color: #b76ee4;
+					border-radius: 28px;
+					box-shadow: 0 4px 0 0 #7b4674;
+					&:before {
+						left: 14px;
+					}
+				}
+			}
 			.board-title-bg {
 				background-image: url(../image/test_num_five.png);
 			}
 		}
 		&.f {
-			background-image: url(../image/test_bg_one.png);
-			.board-title-bg {
-				background-image: url(../image/test_num_one.png);
+			background-image: url(../image/test_bg_six.png);
+			.board-wrap {
+				left: 50%;
+				bottom: 0;
+				width: 372px;
+				height: 320px;
+				margin-left: -186px;
+				position: absolute;
+				background-image: url(../image/test_ques_bg_six.png);
+			}
+			.board-box {
+				padding: 52px 42px 0;
+			}
+			.btn {
+				&.choice {
+					padding: 6px 10px 6px 26px;
+					background-color: #ffbe96;
+					border-radius: 28px;
+					box-shadow: 0 3px 0 0 #a2422a;
+					&:before {
+						left: 10px;
+					}
+					&.a {
+						box-shadow: 0 6px 0 0 #a2422a;
+					}
+				}
 			}
 			.board-title {
 				&:before {
 					content: '最后';
 				}
+			}
+			.board-title-bg {
+				background-image: url(../image/test_num_one.png);
 			}
 		}
 	}
