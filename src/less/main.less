@@ -1,0 +1,177 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-size: 14px;
+}
+/********************************按钮********************************/
+	.btn {
+		// 选项类型
+		font-size: 14px;
+		display: inline-block;
+		&.choice {
+			padding: 6px 18px 6px 34px;
+			position: relative;
+			&:before {
+				font-size: 14px;
+				position: absolute;
+				left: 18px;
+				top: 6px;
+			}
+			&.a {
+				&:before {
+					content: 'A.';
+				}
+			}
+			&.b {
+				&:before {
+					content: 'B.';
+				}
+			}
+			&.c {
+				&:before {
+					content: 'C.';
+				}
+			}
+			&.yellow {
+				background-color: #ffdd62;
+				border-radius: 14px;
+				box-shadow: 0 3px 0 0 #972d23;
+			}
+			&.purple {
+				background-color: #b76ee4;
+				&.a {
+					border-radius: 15px;
+					box-shadow: 0 3px 0 0 #7b4674;
+				}
+				&.b, &.c {
+					border-radius: 15px;
+					box-shadow: 0 3px 0 0 #7b4674;
+				}
+			}
+		}
+		// 下一题
+		&.next {
+			left: 50%;
+			color: #fff;
+			bottom: 53.5px;
+			padding: 8px 0;
+			position: fixed;
+			margin-left: -60px;
+			background-color: #b43124;
+			box-shadow: 0 3px 0 0 #43145b;
+			text-align: center;
+			border-radius: 15px;
+			width: 120px;
+		}
+	}
+
+/********************************主线********************************/
+	#master_wrap {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+	}
+	.board-title {
+		&:before {
+			content: '第';
+		}
+		&:after {
+			content: '关:';
+		}
+		padding: 0 8px;
+		display: inline-block;
+	}
+	.board-ques {
+		padding: 0 8px;
+		margin-top: 2px;
+		line-height: 20px;
+	}
+	.board-option {
+		margin-top: 12px;
+		&:first-child {
+			margin-top: 4px;
+		}
+	}
+	.board-title-bg {
+		background-size: contain;
+		display: inline-block;
+		width: 24px;
+		height: 26px;
+		background-repeat: no-repeat;
+		background-position: bottom center;
+	}
+	.board-wrap {
+		background-size: contain;
+		background-repeat: no-repeat;
+	}
+	.board-box {
+		padding: 36px 40px 0;
+	}
+	.master-item {
+		height: 100%;
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		overflow: hidden;
+		&.a {
+			background-image: url(../image/test_bg_one.png);
+			.board-wrap {
+				height: 314px;
+				width: 320px;
+				margin: 0 auto;
+				background-image: url(../image/test_ques_bg_one.png);
+			}
+			.board-title-bg {
+				background-image: url(../image/test_num_one.png);
+			}
+		}
+		&.b {
+			background-image: url(../image/test_bg_two.png);
+			.board-title-bg {
+				background-image: url(../image/test_num_two.png);
+			}
+		}
+		&.c {
+			background-image: url(../image/test_bg_three.png);
+			.board-title-bg {
+				background-image: url(../image/test_num_three.png);
+			}
+		}
+		&.d {
+			background-image: url(../image/test_bg_four.png);
+			.board-title-bg {
+				background-image: url(../image/test_num_four.png);
+			}
+		}
+		&.e {
+			background-image: url(../image/test_bg_five.png);
+			.board-title-bg {
+				background-image: url(../image/test_num_five.png);
+			}
+		}
+		&.f {
+			background-image: url(../image/test_bg_one.png);
+			.board-title-bg {
+				background-image: url(../image/test_num_one.png);
+			}
+			.board-title {
+				&:before {
+					content: '最后';
+				}
+			}
+		}
+	}
+
+/********************************广告分支********************************/
+	#branch_wrap {
+		display: none;
+	}
+	.branch {
+		display: none;
+	}
+	.branch-bg {
+		display: block;
+		width: 100%;
+	}
