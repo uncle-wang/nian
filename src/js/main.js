@@ -93,6 +93,10 @@
 	});
 	$('.page-wrap.success .btn').bind('click', function() {
 		$('.page-wrap.success').hide();
+		$('.page-wrap.award').show();
+	});
+	$('.page-wrap.award .btn').bind('click', function() {
+		$('.page-wrap.award').hide();
 		$('.page-wrap.form').show();
 	});
 	$('.page-wrap.form form').bind('submit', function(e) {
@@ -251,6 +255,11 @@
 		// 闯关成功
 		loadImg('pass_bg.png', function(url) {
 			setBgStyle('.page-wrap.success', url);
+		});
+
+		// 奖品
+		loadImg('reward_bg_reward.png', function(url) {
+			setBgStyle('.page-wrap.award', url);
 		});
 
 		// 个人信息、结尾页背景
