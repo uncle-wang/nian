@@ -180,47 +180,44 @@
 	// 加载数字序号图
 	var loadImgOrder = function(imgNum, place) {
 		loadImg('test_num_' + imgNum + '.png', function(url) {
-			if (place) {
-				if (typeof place === 'string') {
-					place = [place];
-				}
-				for (var i = 0; i < place.length; i ++) {
-					var node = document.querySelector('.master-item.' + place[i] + ' .board-title-bg');
-					node.style.backgroundImage = 'url(' + url + ')';
-				}
+			if (typeof place === 'string') {
+				place = [place];
+			}
+			for (var i = 0; i < place.length; i ++) {
+				var node = document.querySelector('.master-item.' + place[i] + ' .board-title-bg');
+				node.style.backgroundImage = 'url(' + url + ')';
 			}
 		});
 	};
 	// 加载题目面板背景图
 	var loadImgBoard = function(imgNum, place) {
 		loadImg('test_ques_bg_' + imgNum + '.png', function(url) {
-			if (place) {
-				document.querySelector('.master-item.' + place + ' .board-wrap').style.backgroundImage = 'url(' + url + ')';
-			}
+			document.querySelector('.master-item.' + place + ' .board-wrap').style.backgroundImage = 'url(' + url + ')';
 		});
 	};
 	// 加载题目页背景图
-	var loadImgBg = function(imgNum, place) {
+	var loadImgBg = function(imgNum, place, callback) {
 		loadImg('test_bg_' + imgNum + '.png', function(url) {
-			if (place) {
-				document.querySelector('.master-item.' + place).style.backgroundImage = 'url(' + url + ')';
-			}
+			document.querySelector('.master-item.' + place).style.backgroundImage = 'url(' + url + ')';
+			callback && callback();
 		});
 	};
 	// 加载广告分支主题图
-	var loadImgAd = function(imgNum, place) {
+	var loadImgAd = function(imgNum, place, callback) {
 		loadImg('poster_bg_' + imgNum + '.png', function(url) {
-			if (place) {
-				document.querySelector('.branch.' + place + ' .branch-bg').setAttribute('src', url);
-			}
+			document.querySelector('.branch.' + place + ' .branch-bg').setAttribute('src', url);
+			callback && callback();
 		});
 	};
 	// 加载一组图片
-	var loadImgGroup = function(imgNum, place) {
+	var loadImgGroup = function(imgNum, place, callback) {
 		loadImgOrder(imgNum, place);
 		loadImgBoard(imgNum, place);
-		loadImgBg(imgNum, place);
-		loadImgAd(imgNum, place);
+		loadImgBg(imgNum, place, function() {
+			loadImgAd(imgNum, place, function() {
+				callback && callback();
+			});
+		});
 	};
 	// 查找元素并设置背景图
 	var setBgStyle = function(selector, url) {
@@ -230,50 +227,51 @@
 	// 预加载
 	var preloadImage = function() {
 
-		// 闯关失败
-		loadImg('failed_bg.gif', function(url) {
-			setBgStyle('.page-wrap.fail', url);
-		});
-
 		// 第一题
 		loadImgOrder('one', ['a', 'f']);
 		loadImgBoard('one', 'a');
-		loadImgBg('one', 'a');
-		loadImgAd('one', 'a');
-
-		// 二三四五题
-		loadImgGroup('two', 'b');
-		loadImgGroup('three', 'c');
-		loadImgGroup('four', 'd');
-		loadImgGroup('five', 'e');
-
-		// 第六题
-		loadImgBoard('six', 'f');
-		loadImgBg('six', 'f');
-		loadImgAd('six', 'f');
-
-		// 闯关成功
-		loadImg('pass_bg.png', function(url) {
-			setBgStyle('.page-wrap.success', url);
-		});
-
-		// 奖品
-		loadImg('reward_bg_reward.png', function(url) {
-			setBgStyle('.page-wrap.award', url);
-		});
-
-		// 个人信息、结尾页背景
-		loadImg('reward_bg_two.png', function(url) {
-			setBgStyle('.page-wrap.form', url);
-			setBgStyle('.page-wrap.end', url);
-		});
-
-		// 结尾页
-		loadImg('reward_icon_share.png', function(url) {
-			setBgStyle('.page-wrap.end .end-share-icon', url);
-		});
-		loadImg('reward_erweima.png', function(url) {
-			document.querySelector('.page-wrap.end .end-nav-pic img').setAttribute('src', url);
+		loadImgBg('one', 'a', function() {
+			// 闯关失败
+			loadImg('failed_bg.gif', function(url) {
+				setBgStyle('.page-wrap.fail', url);
+			});
+			// 第一个广告
+			loadImgAd('one', 'a', function() {
+				// 二三四五题及广告
+				loadImgGroup('two', 'b', function() {
+					loadImgGroup('three', 'c', function() {
+						loadImgGroup('four', 'd', function() {
+							loadImgGroup('five', 'e', function() {
+								// 第六题
+								loadImgBoard('six', 'f');
+								loadImgBg('six', 'f');
+								loadImgAd('six', 'f', function() {
+									// 闯关成功
+									loadImg('pass_bg.png', function(url) {
+										setBgStyle('.page-wrap.success', url);
+										// 奖品
+										loadImg('reward_bg_reward.png', function(url) {
+											setBgStyle('.page-wrap.award', url);
+											// 个人信息、结尾页背景
+											loadImg('reward_bg_two.png', function(url) {
+												setBgStyle('.page-wrap.form', url);
+												setBgStyle('.page-wrap.end', url);
+												// 结尾页
+												loadImg('reward_icon_share.png', function(url) {
+													setBgStyle('.page-wrap.end .end-share-icon', url);
+												});
+												loadImg('reward_erweima.png', function(url) {
+													document.querySelector('.page-wrap.end .end-nav-pic img').setAttribute('src', url);
+												});
+											});
+										});
+									});
+								});
+							});
+						});
+					});
+				});
+			});
 		});
 	};
 
