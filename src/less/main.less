@@ -6,6 +6,14 @@ body {
 	font-size: 14px;
 }
 
+.transform(@v) {
+	transform: @v;
+	-ms-transform: @v;
+	-moz-transform: @v;
+	-webkit-transform: @v;
+	-o-transform: @v;
+}
+
 /********************************按钮********************************/
 	.btn {
 		// 选项类型
@@ -20,16 +28,19 @@ body {
 				top: 6px;
 			}
 			&.a {
+				.transform(translateX(-320px));
 				&:before {
 					content: 'A.';
 				}
 			}
 			&.b {
+				.transform(translateX(320px));
 				&:before {
 					content: 'B.';
 				}
 			}
 			&.c {
+				.transform(translateX(-320px));
 				&:before {
 					content: 'C.';
 				}
@@ -240,6 +251,19 @@ body {
 		background-repeat: no-repeat;
 		overflow: hidden;
 		display: none;
+		&.restore {
+			.btn {
+				&.choice {
+					transition: transform 1200ms;
+					-moz-transition: transform 1200ms;
+					-webkit-transition: transform 1200ms;
+					-o-transition: transform 1200ms;
+					&.a, &.b, &.c {
+						.transform(translateX(0));
+					}
+				}
+			}
+		}
 		&.a {
 			background-image: url(../image/test_bg_one.png);
 			.board-wrap {

@@ -40,5 +40,5 @@ gulp.task('watchjs', function() {
 	gulp.watch(jsSrc, ['uglifyJs']);
 });
 
-gulp.task('default', ['watchless', 'watchjs']);
-gulp.task('make', ['uglifyJs', 'compileLess']);
+gulp.task('watch', ['watchless', 'watchjs']);
+gulp.task('default', ['uglifyJs', 'compileLess']);

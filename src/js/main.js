@@ -46,10 +46,14 @@
 /********************************视图切换********************************/
 	// 主界面切换
 	var showMaster = function(id) {
+		var $toShowMaster = $('.master-item.' + id);
 		$('#branch_wrap, .branch').hide();
 		$('#master_wrap').show();
 		$('.master-item').hide().removeClass('restore');
-		$('.master-item.' + id).show().addClass('restore');
+		$toShowMaster.show();
+		setTimeout(function() {
+			$toShowMaster.addClass('restore');
+		});
 	};
 	// 分支切换
 	var showBranch = function(id) {
@@ -116,7 +120,7 @@ restart();
 	});
 
 	// 点击错误答案
-	$('.master-item .btn.b, .master-item .btn.c').bind('click', function() {
+	$('.btn.choice.b, .btn.choice.c').bind('click', function() {
 		toFail();
 	});
 
