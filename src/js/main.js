@@ -159,4 +159,114 @@
 		$('.page-wrap.success').show();
 	});
 
-	restart();
+/********************************图片加载********************************/
+	// xhr加载图片
+	var loadImg = function(imgFile, onComplete) {
+		var imgUrl = 'build/image/' + imgFile;
+		var xmlHTTP = new XMLHttpRequest();
+		xmlHTTP.open('GET', imgUrl, true);
+		xmlHTTP.responseType = 'arraybuffer';
+		xmlHTTP.onload = function(e) {
+			var blob = new Blob([this.response]);
+			var url = window.URL.createObjectURL(blob);
+			onComplete && onComplete(url);
+		};
+		xmlHTTP.send();
+	};
+	// 加载数字序号图
+	var loadImgOrder = function(imgNum, place) {
+		loadImg('test_num_' + imgNum + '.png', function(url) {
+			if (place) {
+				if (typeof place === 'string') {
+					place = [place];
+				}
+				for (var i = 0; i < place.length; i ++) {
+					var node = document.querySelector('.master-item.' + place[i] + ' .board-title-bg');
+					node.style.backgroundImage = 'url(' + url + ')';
+				}
+			}
+		});
+	};
+	// 加载题目面板背景图
+	var loadImgBoard = function(imgNum, place) {
+		loadImg('test_ques_bg_' + imgNum + '.png', function(url) {
+			if (place) {
+				document.querySelector('.master-item.' + place + ' .board-wrap').style.backgroundImage = 'url(' + url + ')';
+			}
+		});
+	};
+	// 加载题目页背景图
+	var loadImgBg = function(imgNum, place) {
+		loadImg('test_bg_' + imgNum + '.png', function(url) {
+			if (place) {
+				document.querySelector('.master-item.' + place).style.backgroundImage = 'url(' + url + ')';
+			}
+		});
+	};
+	// 加载广告分支主题图
+	var loadImgAd = function(imgNum, place) {
+		loadImg('poster_bg_' + imgNum + '.png', function(url) {
+			if (place) {
+				document.querySelector('.branch.' + place + ' .branch-bg').setAttribute('src', url);
+			}
+		});
+	};
+	// 加载一组图片
+	var loadImgGroup = function(imgNum, place) {
+		loadImgOrder(imgNum, place);
+		loadImgBoard(imgNum, place);
+		loadImgBg(imgNum, place);
+		loadImgAd(imgNum, place);
+	};
+	// 查找元素并设置背景图
+	var setBgStyle = function(selector, url) {
+		document.querySelector(selector).style.backgroundImage = 'url(' + url + ')';
+	};
+
+	// 预加载
+	var preloadImage = function() {
+
+		// 闯关失败
+		loadImg('failed_bg.gif', function(url) {
+			setBgStyle('.page-wrap.fail', url);
+		});
+
+		// 第一题
+		loadImgOrder('one', ['a', 'f']);
+		loadImgBoard('one', 'a');
+		loadImgBg('one', 'a');
+		loadImgAd('one', 'a');
+
+		// 二三四五题
+		loadImgGroup('two', 'b');
+		loadImgGroup('three', 'c');
+		loadImgGroup('four', 'd');
+		loadImgGroup('five', 'e');
+
+		// 第六题
+		loadImgBoard('six', 'f');
+		loadImgBg('six', 'f');
+		loadImgAd('six', 'f');
+
+		// 闯关成功
+		loadImg('pass_bg.png', function(url) {
+			setBgStyle('.page-wrap.success', url);
+		});
+
+		// 个人信息、结尾页背景
+		loadImg('reward_bg_two.png', function(url) {
+			setBgStyle('.page-wrap.form', url);
+			setBgStyle('.page-wrap.end', url);
+		});
+
+		// 结尾页
+		loadImg('reward_icon_share.png', function(url) {
+			setBgStyle('.page-wrap.end .end-share-icon', url);
+		});
+		loadImg('reward_erweima.png', function(url) {
+			document.querySelector('.page-wrap.end .end-nav-pic img').setAttribute('src', url);
+		});
+	};
+
+restart();
+preloadImage();
