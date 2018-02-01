@@ -76,8 +76,14 @@
 		$('#branch_wrap, .branch').hide();
 		$('.page-wrap.fail').show();
 	};
-
-restart();
+	// 表单验证空值提示
+	var showFormError = function() {
+		var info = $('.page-wrap.form .info');
+		info.show();
+		setTimeout(function() {
+			info.hide();
+		}, 2000);
+	};
 
 /********************************事件绑定********************************/
 	// 开始、失败、通关等界面事件绑定
@@ -90,8 +96,16 @@ restart();
 		$('.page-wrap.form').show();
 	});
 	$('.page-wrap.form form').bind('submit', function(e) {
-		$('.page-wrap.form').hide();
-		$('.page-wrap.end').show();
+		var name = document.querySelector('.page-wrap.form .form-input[name="name"]').value;
+		var tel = document.querySelector('.page-wrap.form .form-input[name="tel"]').value;
+		var job = document.querySelector('.page-wrap.form .form-input[name="job"]').value;
+		if (!name || !tel || !job) {
+			showFormError();
+		}
+		else {
+			$('.page-wrap.form').hide();
+			$('.page-wrap.end').show();
+		}
 		e.preventDefault();
 		return false;
 	});
@@ -145,3 +159,4 @@ restart();
 		$('.page-wrap.success').show();
 	});
 
+	restart();
