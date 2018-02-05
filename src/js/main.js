@@ -64,10 +64,14 @@
 	};
 	// 重新开始
 	var restart = function() {
+		var startPage = $('.page-wrap.start');
 		$('.page-wrap').hide();
 		$('#master_wrap, .master-item').hide().removeClass('restore');
 		$('#branch_wrap, .branch').hide();
-		$('.page-wrap.start').show();
+		startPage.show();
+		setTimeout(function() {
+			startPage.addClass('restore');
+		});
 	};
 	// 失败
 	var toFail = function() {
@@ -89,6 +93,7 @@
 	// 开始、失败、通关等界面事件绑定
 	$('.page-wrap.start .btn').bind('click', function() {
 		$('.page-wrap').hide();
+		$('.page-wrap.start').removeClass('restore');
 		showMaster('a');
 	});
 	$('.page-wrap.success .btn').bind('click', function() {
@@ -118,23 +123,41 @@
 	});
 
 	// 点击正确答案
-	$('.master-item.a .btn.a').bind('click', function() {
+	$('.master-item.a .btn.a span').bind('click', function(e) {
 		showBranch('a');
+		e.preventDefault();
+		e.stopPropagation();
+		return false;
 	});
-	$('.master-item.b .btn.a').bind('click', function() {
+	$('.master-item.b .btn.a span').bind('click', function(e) {
 		showBranch('b');
+		e.preventDefault();
+		e.stopPropagation();
+		return false;
 	});
-	$('.master-item.c .btn.a').bind('click', function() {
+	$('.master-item.c .btn.a span').bind('click', function(e) {
 		showBranch('c');
+		e.preventDefault();
+		e.stopPropagation();
+		return false;
 	});
-	$('.master-item.d .btn.a').bind('click', function() {
+	$('.master-item.d .btn.a span').bind('click', function(e) {
 		showBranch('d');
+		e.preventDefault();
+		e.stopPropagation();
+		return false;
 	});
-	$('.master-item.e .btn.a').bind('click', function() {
+	$('.master-item.e .btn.a span').bind('click', function(e) {
 		showBranch('e');
+		e.preventDefault();
+		e.stopPropagation();
+		return false;
 	});
-	$('.master-item.f .btn.a').bind('click', function() {
+	$('.master-item.f .btn.a span').bind('click', function(e) {
 		showBranch('f');
+		e.preventDefault();
+		e.stopPropagation();
+		return false;
 	});
 
 	// 点击错误答案
@@ -142,23 +165,24 @@
 		toFail();
 	});
 
-	// 广告分支中点击下一题继续
-	$('.branch.a .btn').bind('click', function() {
+	// 主分支中点击正确选项或广告分支中点击下一题继续
+	$('.branch.a .btn, .master-item.a .btn.a').bind('click', function() {
 		showMaster('b');
 	});
-	$('.branch.b .btn').bind('click', function() {
+	$('.branch.b .btn, .master-item.b .btn.a').bind('click', function() {
 		showMaster('c');
 	});
-	$('.branch.c .btn').bind('click', function() {
+	$('.branch.c .btn, .master-item.c .btn.a').bind('click', function() {
 		showMaster('d');
 	});
-	$('.branch.d .btn').bind('click', function() {
+	$('.branch.d .btn, .master-item.d .btn.a').bind('click', function() {
 		showMaster('e');
 	});
-	$('.branch.e .btn').bind('click', function() {
+	$('.branch.e .btn, .master-item.e .btn.a').bind('click', function() {
 		showMaster('f');
 	});
-	$('.branch.f .btn').bind('click', function() {
+	$('.branch.f .btn, .master-item.f .btn.a').bind('click', function() {
+		$('#master_wrap').hide();
 		$('#branch_wrap').hide();
 		$('.page-wrap.success').show();
 	});
@@ -275,5 +299,14 @@
 		});
 	};
 
+/********************************音乐播放********************************/
+	var playMusic = function() {
+		document.addEventListener('WeixinJSBridgeReady', function() {
+			var audio = new Audio('build/sound/bgm.mp3');
+			audio.play();
+		}, false);
+	};
+
 restart();
 preloadImage();
+playMusic();
