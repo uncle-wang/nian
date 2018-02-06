@@ -122,7 +122,7 @@
 		restart();
 	});
 
-	// 点击正确答案
+	// 点击广告链接
 	$('.master-item.a .btn.a span').bind('click', function(e) {
 		showBranch('a');
 		e.preventDefault();
