@@ -62,16 +62,28 @@
 		$('.branch').hide();
 		$('.branch.' + id).show();
 	};
+	// setTimeout句柄，用于取消timeOut任务
+	var startTimeCount;
 	// 重新开始
 	var restart = function() {
 		var startPage = $('.page-wrap.start');
 		$('.page-wrap').hide();
 		$('#master_wrap, .master-item').hide().removeClass('restore');
 		$('#branch_wrap, .branch').hide();
+		$('.page-wrap.start .start-text p').removeClass('show');
 		startPage.show();
 		setTimeout(function() {
 			startPage.addClass('restore');
+			delayShowText(0);
 		});
+		var delayShowText = function(index) {
+			$('.page-wrap.start .start-text p:nth-child(' + (index + 1) + ')').addClass('show');
+			if (++ index < 5) {
+				startTimeCount = setTimeout(function() {
+					delayShowText(index);
+				}, 1800);
+			}
+		};
 	};
 	// 失败
 	var toFail = function() {
@@ -94,6 +106,7 @@
 	$('.page-wrap.start .btn').bind('click', function() {
 		$('.page-wrap').hide();
 		$('.page-wrap.start').removeClass('restore');
+		clearTimeout(startTimeCount);
 		showMaster('a');
 	});
 	$('.page-wrap.success .btn').bind('click', function() {
@@ -114,6 +127,7 @@
 		else {
 			$('.page-wrap.form').hide();
 			$('.page-wrap.end').show();
+			$('.music-wrap').hide();
 		}
 		e.preventDefault();
 		return false;
@@ -300,9 +314,29 @@
 	};
 
 /********************************音乐播放********************************/
+	var switchMusicIconToOn = function(audio) {
+		$('.music-wrap .music-btn.off').removeClass('show');
+		$('.music-wrap .music-btn.on').addClass('show');
+	};
+	var switchMusicIconToOff = function(audio) {
+		$('.music-wrap .music-btn.on').removeClass('show');
+		$('.music-wrap .music-btn.off').addClass('show');
+	};
 	var playMusic = function() {
+		var audio = new Audio('build/sound/bgm.mp3');
+		audio.loop = true;
+		$('.music-wrap .music-btn.on').bind('click', function() {
+			switchMusicIconToOff();
+			audio.pause();
+		});
+		$('.music-wrap .music-btn.off').bind('click', function(e) {
+			switchMusicIconToOn();
+			audio.play();
+		});
+		audio.addEventListener('play', function() {
+			switchMusicIconToOn();
+		});
 		document.addEventListener('WeixinJSBridgeReady', function() {
-			var audio = new Audio('build/sound/bgm.mp3');
 			audio.play();
 		}, false);
 	};

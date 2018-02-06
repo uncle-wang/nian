@@ -5,19 +5,25 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-		<link rel="stylesheet" type="text/css" href="build/css/main.css?v=08020502">
-		<title>nian</title>
+		<link rel="stylesheet" type="text/css" href="build/css/main.css">
+		<title>消灭年兽，赢大奖！</title>
 	</head>
 	<body>
+		<!--音乐开关-->
+		<div class="music-wrap">
+			<a class="music-btn on"></a>
+			<a class="music-btn off show"></a>
+			<audio id="music" loop></audio>
+		</div>
 		<!--开始-->
 		<div class="page-wrap start">
 			<div class="start-text-bg"></div>
 			<div class="start-text">
-				新年将至,又到了年兽出没的时候。<br/>
-				据多地市民目击称:它体型硕大，<br/>
-				口吐浊气,所到之处无不被雾霾笼罩。<br/>
-				身为超级英雄的你请立即出发，<br/>
-				消灭年兽,拯救市民！
+				<p>新年将至,又到了年兽出没的时候。</p>
+				<p>据多地市民目击称:它体型硕大，</p>
+				<p>口吐浊气,所到之处无不被雾霾笼罩。</p>
+				<p>身为超级英雄的你请立即出发，</p>
+				<p>消灭年兽,拯救市民！</p>
 			</div>
 			<div class="start-btn-wrap"><a class="btn fun">开始闯关</a></div>
 		</div>
@@ -33,6 +39,10 @@
 		</div>
 		<!--闯关失败-->
 		<div class="page-wrap fail">
+			<div class="fail-text">
+				<div class="fail-signal">╥﹏╥</div>
+				<div class="fail-title">挑战失败</div>
+			</div>
 			<div class="fail-btn-wrap"><a class="btn fail">重新闯关</a></div>
 		</div>
 		<!--奖品-->
@@ -60,13 +70,13 @@
 				<div class="end-share-text">
 					恭喜您已成功获得奖励资格，<br/>
 					快分享给小伙伴们，<br/>
-					一起来霍尼英雄通关大奖吧！<br/>
+					一起来赢取霍尼英雄通关大奖吧！<br/>
 				</div>
 			</div>
 			<div class="end-nav">
 				<div class="end-nav-pic"><img></div>
 				<div class="end-nav-text">关注小霍官微,更多精彩活动不容错过</div>
-				<div class="end-nav-btn"><a target="_blank" class="btn fun" href="http://www.baidu.com">霍尼韦尔官方旗舰店</a></div>
+				<div class="end-nav-btn"><a class="btn fun" href="https://mall.jd.com/index-1000078145.html">霍尼韦尔官方旗舰店</a></div>
 			</div>
 		</div>
 		<!--主线-->
@@ -159,6 +169,6 @@
 			<div class="branch e"><a class="btn fun">下一题</a><img class="branch-bg"></div>
 			<div class="branch f"><a class="btn fun">继续</a><img class="branch-bg"></div>
 		</div>
-		<script type="text/javascript" src="build/js/main.js?v=08020502"></script>
+		<script type="text/javascript" src="build/js/main.js"></script>
 	</body>
 </html>
