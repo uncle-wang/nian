@@ -54,25 +54,7 @@ body {
 			&:before {
 				font-size: 14px;
 				position: absolute;
-				top: 6px;
-			}
-			&.a {
-				.transform(translateX(-320px));
-				&:before {
-					content: 'A.';
-				}
-			}
-			&.b {
-				.transform(translateX(320px));
-				&:before {
-					content: 'B.';
-				}
-			}
-			&.c {
-				.transform(translateX(-320px));
-				&:before {
-					content: 'C.';
-				}
+				top: 7px;
 			}
 			.under-line {
 				border-bottom: 1px solid #3774a0;
@@ -98,6 +80,24 @@ body {
 			border-radius: 18px;
 		}
 	}
+	.board-option:nth-child(1) .btn.choice {
+		.transform(translateX(-320px));
+		&:before {
+			content: 'A.';
+		}
+	}
+	.board-option:nth-child(2) .btn.choice {
+		.transform(translateX(320px));
+		&:before {
+			content: 'B.';
+		}
+	}
+	.board-option:nth-child(3) .btn.choice {
+		.transform(translateX(-320px));
+		&:before {
+			content: 'C.';
+		}
+	}
 
 /********************************开始、失败等节点页面********************************/
 	.page-wrap {
@@ -116,10 +116,10 @@ body {
 			.start-text-bg {
 				opacity: 0;
 				width: 252px;
-				height: 130px;
+				height: 127px;
 				.transform(translateX(-320px));
 				background-color: rgba(0, 0, 0, 0.5);
-				box-shadow: 0px 0 8px 8px rgba(0,0,0,.5);
+				box-shadow: 0 4px 8px 10px rgba(0,0,0,.5);
 				position: absolute;
 				margin-left: -126px;
 				left: 50%;
@@ -137,8 +137,8 @@ body {
 					opacity: 0;
 					&.show {
 						opacity: 1;
-						transition: opacity 3000ms;
-						-webkit-transition: opacity 3000ms;
+						transition: opacity 1500ms;
+						-webkit-transition: opacity 1500ms;
 					}
 				}
 			}
@@ -362,10 +362,10 @@ body {
 					-moz-transition: transform 1200ms, opacity 1200ms;
 					-webkit-transition: transform 1200ms, opacity 1200ms;
 					-o-transition: transform 1200ms, opacity 1200ms;
-					&.a, &.b, &.c {
-						.transform(translateX(0));
-					}
 				}
+			}
+			.board-option:nth-child(1) .btn.choice, .board-option:nth-child(2) .btn.choice, .board-option:nth-child(3) .btn.choice {
+				.transform(translateX(0));
 			}
 			.board-title {
 				opacity: 1;
@@ -444,11 +444,11 @@ body {
 					&:before {
 						left: 8px;
 					}
-					&.a {
-						box-shadow: 0 5px 0 0 #8487a8;
-						padding: 6px 14px 6px 24px;
-					}
 				}
+			}
+			.board-option:nth-child(1) .btn.choice {
+				box-shadow: 0 5px 0 0 #8487a8;
+				padding: 6px 14px 6px 24px;
 			}
 		}
 		&.d {
@@ -518,10 +518,10 @@ body {
 					&:before {
 						left: 10px;
 					}
-					&.a {
-						box-shadow: 0 6px 0 0 #a2422a;
-					}
 				}
+			}
+			.board-option:nth-child(1) .btn.choice {
+				box-shadow: 0 6px 0 0 #a2422a;
 			}
 			.board-title {
 				&:before {
@@ -540,7 +540,7 @@ body {
 		.btn {
 			&.fun {
 				width: 52px;
-				position: absolute;
+				position: fixed;
 				margin-left: -62px;
 				bottom: 54px;
 				left: 50%;

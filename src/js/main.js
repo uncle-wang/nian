@@ -53,7 +53,7 @@
 		$toShowMaster.show();
 		setTimeout(function() {
 			$toShowMaster.addClass('restore');
-		});
+		}, 50);
 	};
 	// 分支切换
 	var showBranch = function(id) {
@@ -81,7 +81,7 @@
 			if (++ index < 5) {
 				startTimeCount = setTimeout(function() {
 					delayShowText(index);
-				}, 1800);
+				}, 1200);
 			}
 		};
 	};
@@ -137,37 +137,37 @@
 	});
 
 	// 点击广告链接
-	$('.master-item.a .btn.a span').bind('click', function(e) {
+	$('.master-item.a .btn.right span').bind('click', function(e) {
 		showBranch('a');
 		e.preventDefault();
 		e.stopPropagation();
 		return false;
 	});
-	$('.master-item.b .btn.a span').bind('click', function(e) {
+	$('.master-item.b .btn.right span').bind('click', function(e) {
 		showBranch('b');
 		e.preventDefault();
 		e.stopPropagation();
 		return false;
 	});
-	$('.master-item.c .btn.a span').bind('click', function(e) {
+	$('.master-item.c .btn.right span').bind('click', function(e) {
 		showBranch('c');
 		e.preventDefault();
 		e.stopPropagation();
 		return false;
 	});
-	$('.master-item.d .btn.a span').bind('click', function(e) {
+	$('.master-item.d .btn.right span').bind('click', function(e) {
 		showBranch('d');
 		e.preventDefault();
 		e.stopPropagation();
 		return false;
 	});
-	$('.master-item.e .btn.a span').bind('click', function(e) {
+	$('.master-item.e .btn.right span').bind('click', function(e) {
 		showBranch('e');
 		e.preventDefault();
 		e.stopPropagation();
 		return false;
 	});
-	$('.master-item.f .btn.a span').bind('click', function(e) {
+	$('.master-item.f .btn.right span').bind('click', function(e) {
 		showBranch('f');
 		e.preventDefault();
 		e.stopPropagation();
@@ -175,27 +175,27 @@
 	});
 
 	// 点击错误答案
-	$('.btn.choice.b, .btn.choice.c').bind('click', function() {
+	$('.btn.choice.wrong').bind('click', function() {
 		toFail();
 	});
 
 	// 主分支中点击正确选项或广告分支中点击下一题继续
-	$('.branch.a .btn, .master-item.a .btn.a').bind('click', function() {
+	$('.branch.a .btn, .master-item.a .btn.right').bind('click', function() {
 		showMaster('b');
 	});
-	$('.branch.b .btn, .master-item.b .btn.a').bind('click', function() {
+	$('.branch.b .btn, .master-item.b .btn.right').bind('click', function() {
 		showMaster('c');
 	});
-	$('.branch.c .btn, .master-item.c .btn.a').bind('click', function() {
+	$('.branch.c .btn, .master-item.c .btn.right').bind('click', function() {
 		showMaster('d');
 	});
-	$('.branch.d .btn, .master-item.d .btn.a').bind('click', function() {
+	$('.branch.d .btn, .master-item.d .btn.right').bind('click', function() {
 		showMaster('e');
 	});
-	$('.branch.e .btn, .master-item.e .btn.a').bind('click', function() {
+	$('.branch.e .btn, .master-item.e .btn.right').bind('click', function() {
 		showMaster('f');
 	});
-	$('.branch.f .btn, .master-item.f .btn.a').bind('click', function() {
+	$('.branch.f .btn, .master-item.f .btn.right').bind('click', function() {
 		$('#master_wrap').hide();
 		$('#branch_wrap').hide();
 		$('.page-wrap.success').show();
