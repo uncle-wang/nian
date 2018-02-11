@@ -92,9 +92,10 @@
 		$('#branch_wrap, .branch').hide();
 		$('.page-wrap.fail').show();
 	};
-	// 表单验证空值提示
-	var showFormError = function() {
+	// 表单提示
+	var showFormError = function(text) {
 		var info = $('.page-wrap.form .info');
+		info.nodeList[0].innerText = text;
 		info.show();
 		setTimeout(function() {
 			info.hide();
@@ -122,12 +123,14 @@
 		var tel = document.querySelector('.page-wrap.form .form-input[name="tel"]').value;
 		var job = document.querySelector('.page-wrap.form .form-input[name="job"]').value;
 		if (!name || !tel || !job) {
-			showFormError();
+			showFormError('请把信息填写完整');
 		}
 		else {
-			$('.page-wrap.form').hide();
-			$('.page-wrap.end').show();
-			$('.music-wrap').hide();
+			uploadUserInfo(name, tel, job, function() {
+				$('.page-wrap.form').hide();
+				$('.page-wrap.end').show();
+				$('.music-wrap').hide();
+			});
 		}
 		e.preventDefault();
 		return false;
@@ -339,6 +342,28 @@
 		document.addEventListener('WeixinJSBridgeReady', function() {
 			audio.play();
 		}, false);
+	};
+
+/********************************上传用户信息********************************/
+	var uploadUserInfo = function(name, tel, job, callback) {
+		var url = 'http://nian.prod.deansel.com/nian/User/AddUserInfo2';
+		var data = new FormData();
+		var xhr = new XMLHttpRequest();
+		data.append('name', name);
+		data.append('phone', tel);
+		data.append('profession', job);
+		xhr.open('post', url, true);
+		xhr.send(data);
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4) {
+				if (xhr.status == 200) {
+					callback();
+				}
+			}
+		};
+		xhr.onerror = function() {
+			showFormError('Sorry, net error');
+		};
 	};
 
 restart();
